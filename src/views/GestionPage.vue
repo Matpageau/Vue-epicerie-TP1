@@ -1,9 +1,11 @@
 <script setup lang="ts">
-
+import CardBoard from '../components/Card/CardBoard/CardBoard.vue';
+const page = "admin";
 </script>
 <template>
-    <div class="flex flex-col items-center">
-        <h1 class="text-2xl font-bold mb-4">Gestion Page</h1>
-        <p class="text-lg">This is the gestion page content.</p>
+    <div class="flex justify-center">
+      <CardBoard
+      :page="page"
+      />
     </div>
 </template>

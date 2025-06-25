@@ -1,9 +1,14 @@
 <script setup lang="ts">
+import CardBoard from '../components/Card/CardBoard/CardBoard.vue';
+import BaseModal from '../components/Modal/BaseModal.vue';
 
+const page = "client"
 </script>
 <template>
-    <div class="flex flex-col items-center">
-        <h1 class="text-2xl font-bold mb-4">Client Page</h1>
-        <p class="text-lg">This is the client page content.</p>
+    <!-- <BaseModal /> -->
+    <div class="flex justify-center">
+      <CardBoard
+      :page="page"
+      />
     </div>
 </template>
