@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import SearchBar from './components/SearchBar.vue';
+import NavBar from './components/NavBar.vue';
 </script>
 
 <template>
+  <NavBar />
   <main>
-    <h1 class="text-8xl">Test</h1>
+    <RouterView />
   </main>
 </template>
