@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const modelValue = defineModel<string>()
 </script>
+
 <template>
     <div class="relative">
         <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
