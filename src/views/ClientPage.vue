@@ -11,13 +11,13 @@ const { search, filteredItems } = useSearchFilter(allItems);
 const page = "client"
 </script>
 <template>
+  <!-- <BaseModal>
+    
+  </BaseModal> -->
   <div class="max-w-[1400px] mx-auto px-6 space-y-6">
     <div class="w-1/3">
       <SearchBar v-model="search" />
     </div>
-
-    <!-- <BaseModal /> -->
-
     <CardBoard :page="page" :items="filteredItems" />
   </div>
 </template>

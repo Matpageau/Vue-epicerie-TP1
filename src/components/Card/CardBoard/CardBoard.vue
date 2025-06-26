@@ -7,6 +7,10 @@ const { page } = defineProps<{
   page: "client" | "admin"
 }>()
 
+const emit = defineEmits<{
+  (e: "edit", item: ItemType): void
+}>()
+
 </script>
 
 <template>
@@ -16,6 +20,7 @@ const { page } = defineProps<{
       :key="index"
       :card="card"
       :page="page"
+      @edit="emit('edit', $event)"
     />
   </div>
 </template>
