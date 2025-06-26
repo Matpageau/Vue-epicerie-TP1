@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import SearchBar from '@/components/SearchBar.vue';
 import CardBoard from '../components/Card/CardBoard/CardBoard.vue';
-import BaseModal from '../components/Modal/BaseModal.vue';
-import items from '@/data/items.json';
-import type { ItemType } from '@/types/Item';
 import { useSearchFilter } from '@/composable/SearchFilter';
+import { useItemStore } from '@/stores/itemStore';
+import { storeToRefs } from 'pinia';
 
-const allItems = items as ItemType[];
-const { search, filteredItems } = useSearchFilter(allItems);
+const itemStore = useItemStore()
+const { items } = storeToRefs(itemStore)
+const { search, filteredItems } = useSearchFilter(items.value);
 const page = "client"
+
+
 </script>
 <template>
   <!-- <BaseModal>
@@ -16,7 +18,7 @@ const page = "client"
   </BaseModal> -->
   <div class="max-w-[1400px] mx-auto px-6 space-y-6">
     <div class="w-1/3">
-      <SearchBar v-model="search" />
+      <SearchBar v-model="search"/>
     </div>
     <CardBoard :page="page" :items="filteredItems" />
   </div>

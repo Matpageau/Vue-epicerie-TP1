@@ -9,6 +9,7 @@ const { page } = defineProps<{
 
 const emit = defineEmits<{
   (e: "edit", item: ItemType): void
+  (e: "delete", item: ItemType): void
 }>()
 
 </script>
@@ -20,7 +21,8 @@ const emit = defineEmits<{
       :key="index"
       :card="card"
       :page="page"
-      @edit="emit('edit', $event)"
+      @edit="emit('edit', card)"
+      @delete="emit('delete', card)"
     />
   </div>
 </template>

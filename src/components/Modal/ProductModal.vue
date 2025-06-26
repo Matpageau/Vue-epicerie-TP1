@@ -3,19 +3,43 @@ import type { ItemType } from '@/types/Item';
 import CancellBtn from '../Buttons/CancellBtn.vue';
 import ConfirmBtn from '../Buttons/ConfirmBtn.vue'
 import { ref } from 'vue';
+import { watch } from 'vue';
 
 const { item } = defineProps<{
-  item: ItemType;
+  item: ItemType | null;
 }>();
 
 const emit = defineEmits<{
   (e: "cancel"): void
+  (e: "confirm", updatedItem: ItemType): void
 }>()
 
-const name = ref(item.name)
-const price = ref(item.price)
-const stock = ref(item.stock)
-const category = ref(item.category)
+const id = ref(item?.id ?? crypto.randomUUID())
+const name = ref(item?.name ?? "")
+const price = ref(item?.price ?? 0)
+const stock = ref(item?.stock ?? 0)
+const category = ref(item?.category ?? "")
+
+watch(() => item, (newItem) => {
+  name.value = newItem?.name ?? ''
+  price.value = newItem?.price ?? 0
+  stock.value = newItem?.stock ?? 0
+  category.value = newItem?.category ?? ''
+}, { immediate: true })
+
+const saveProduct = () => {
+  if (!name.value || !category.value || price.value === null || stock.value === null) {
+    return
+  }
+
+  emit("confirm", {
+    id: id.value,
+    name: name.value,
+    price: price.value,
+    stock: stock.value,
+    category: category.value
+  })
+}
 </script>
 
 <template>
@@ -58,7 +82,7 @@ const category = ref(item.category)
     </div>
     <div class="flex justify-end gap-2">
       <CancellBtn @cancel="emit('cancel')"/>
-      <ConfirmBtn />
+      <ConfirmBtn @confirm="saveProduct"/>
     </div>
   </div>
 </template>
