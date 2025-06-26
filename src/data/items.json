@@ -3,42 +3,49 @@
     "id": 1,
     "name": "Pomme",
     "price": 2,
-    "stock": 50
+    "stock": 50,
+    "category": "fruit"
   },
   {
     "id": 1,
     "name": "Pomme",
     "price": 2,
-    "stock": 50
+    "stock": 50,
+    "category": "fruit"
   },
   {
     "id": 1,
     "name": "Pomme",
     "price": 2,
-    "stock": 50
+    "stock": 50,
+    "category": "fruit"
+  },
+  {
+    "id": 1,
+    "name": "Bifteck",
+    "price": 2,
+    "stock": 50,
+    "category": "viande"
+  },
+  {
+    "id": 1,
+    "name": "Brocolie",
+    "price": 2,
+    "stock": 50,
+    "category": "legume"
   },
   {
     "id": 1,
     "name": "Pomme",
     "price": 2,
-    "stock": 50
+    "stock": 50,
+    "category": "fruit"
   },
   {
     "id": 1,
-    "name": "Pomme",
+    "name": "Steak",
     "price": 2,
-    "stock": 50
-  },
-  {
-    "id": 1,
-    "name": "Pomme",
-    "price": 2,
-    "stock": 50
-  },
-  {
-    "id": 1,
-    "name": "Banane",
-    "price": 2,
-    "stock": 50
+    "stock": 50,
+    "category": "viande"
   }
 ]
