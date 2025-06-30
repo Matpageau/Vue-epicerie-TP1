@@ -43,46 +43,44 @@ const saveProduct = () => {
 </script>
 
 <template>
-  <div>
-    <div class="flex flex-col mb-5 px-15">
-      <h1 class="text-white font-bold text-xl mb-7">Produit</h1>
-      <label for="name" class="block text-white">Nom</label>
-      <input 
-        id="name"
-        name="nom"
-        type="text"
-        v-model="name"
-        class="bg-neutral-800 rounded text-white p-1 focus:outline-none focus:ring-2 focus:ring-white"
-      />
-      <label for="prix" class="block text-white mt-2">Prix</label>
-      <input 
-        id="prix"
-        name="prix"
-        type="number"
-        v-model="price"
-        min="0"
-        class="bg-neutral-800 rounded text-white p-1 focus:outline-none focus:ring-2 focus:ring-white"
-      />
-      <label for="category" class="block text-white mt-2">Catégorie</label>
-      <select v-model="category" id="category" class="bg-neutral-800 rounded text-white p-1 focus:outline-none focus:ring-2 focus:ring-white">
-        <option hidden value=""></option>
-        <option value="fruit">Fruit</option>
-        <option value="legume">Légume</option>
-        <option value="viande">Viande</option>
-      </select>
-      <label for="stock" class="block text-white mt-2">Stock</label>
-      <input 
-        id="stock"
-        name="stock"
-        type="number"
-        v-model="stock"
-        min="0"
-        class="bg-neutral-800 rounded text-white p-1 focus:outline-none focus:ring-2 focus:ring-white"
-      />
-    </div>
-    <div class="flex justify-end gap-2">
-      <CancellBtn @cancel="emit('cancel')"/>
-      <ConfirmBtn @confirm="saveProduct"/>
-    </div>
+  <div class="flex flex-col mb-5 px-15">
+    <h1 class="text-white font-bold text-xl mb-7">Produit</h1>
+    <label for="name" class="block text-white">Nom</label>
+    <input 
+      id="name"
+      name="nom"
+      type="text"
+      v-model="name"
+      class="bg-neutral-300 rounded p-1 focus:outline-none focus:ring-2 focus:ring-white"
+    />
+    <label for="prix" class="block text-white mt-2">Prix</label>
+    <input 
+      id="prix"
+      name="prix"
+      type="number"
+      v-model="price"
+      min="0"
+      class="bg-neutral-300 rounded p-1 focus:outline-none focus:ring-2 focus:ring-white"
+    />
+    <label for="category" class="block text-white mt-2">Catégorie</label>
+    <select v-model="category" id="category" class="bg-neutral-300 rounded p-1 focus:outline-none focus:ring-2 focus:ring-white">
+      <option hidden value=""></option>
+      <option value="fruit">Fruit</option>
+      <option value="legume">Légume</option>
+      <option value="viande">Viande</option>
+    </select>
+    <label for="stock" class="block text-white mt-2">Stock</label>
+    <input 
+      id="stock"
+      name="stock"
+      type="number"
+      v-model="stock"
+      min="0"
+      class="bg-neutral-300 rounded p-1 focus:outline-none focus:ring-2 focus:ring-white"
+    />
+  </div>
+  <div class="flex justify-end gap-2">
+    <CancellBtn @cancel="emit('cancel')"/>
+    <ConfirmBtn @confirm="saveProduct"/>
   </div>
 </template>

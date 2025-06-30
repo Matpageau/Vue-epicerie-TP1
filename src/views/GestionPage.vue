@@ -11,7 +11,15 @@ import CreateItemBtn from "@/components/Buttons/CreateItemBtn.vue"
 import { ref } from 'vue';
 import FilterButton from '@/components/Buttons/FilterBtn.vue';
 
+const page = "admin";
+const itemStore = useItemStore()
+const { items } = storeToRefs(itemStore)
+const { addOrUpdateItem, deleteItem } = itemStore
 const selectedCategories = ref<string[]>([]);
+const { search, filteredItems } = useFilter(items.value, selectedCategories);
+const isModalOpen = ref(false)
+const selectedItem = ref<ItemType | null>(null)
+
 function toggleCategory(category: string) {
   const index = selectedCategories.value.indexOf(category);
   if (index > -1) {
@@ -20,15 +28,6 @@ function toggleCategory(category: string) {
     selectedCategories.value.push(category);
   }
 }
-
-const page = "admin";
-const itemStore = useItemStore()
-const { items } = storeToRefs(itemStore)
-const { addOrUpdateItem, deleteItem } = itemStore
-const { search, filteredItems } = useFilter(items.value, selectedCategories);
-
-const isModalOpen = ref(false)
-const selectedItem = ref<ItemType | null>(null)
 
 const openEditModal = (item?: ItemType) => {
   if(item) {

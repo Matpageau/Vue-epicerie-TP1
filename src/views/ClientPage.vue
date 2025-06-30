@@ -6,8 +6,16 @@ import { useItemStore } from '@/stores/itemStore';
 import { storeToRefs } from 'pinia';
 import FilterButton from '@/components/Buttons/FilterBtn.vue';
 import { ref } from 'vue';
+import CartBtn from '@/components/Buttons/CartBtn.vue';
+import BaseModal from '@/components/Modal/BaseModal.vue';
+import ShoppingCartModal from '@/components/Modal/ShoppingCartModal.vue';
 
 const selectedCategories = ref<string[]>([]);
+const page = "client"
+const itemStore = useItemStore()
+const { items } = storeToRefs(itemStore)
+const { search, filteredItems } = useFilter(items.value, selectedCategories);
+const isCartModalOpen = ref(false)
 
 function toggleCategory(category: string) {
   const index = selectedCategories.value.indexOf(category);
@@ -18,19 +26,24 @@ function toggleCategory(category: string) {
   }
 }
 
-const page = "client"
-const itemStore = useItemStore()
-const { items } = storeToRefs(itemStore)
-const { search, filteredItems } = useFilter(items.value, selectedCategories);
+const openCartModal = () => {
+  isCartModalOpen.value = true
+}
 
-
+const closeEditModal = () => {
+  isCartModalOpen.value = false
+}
 
 </script>
+
 <template>
-  <!-- <BaseModal>
-    
-  </BaseModal> -->
+  <BaseModal v-if="isCartModalOpen">
+    <ShoppingCartModal />
+  </BaseModal>
   <div class="max-w-[1400px] mx-auto px-6 space-y-6">
+    <div class="absolute top-0 right-0">
+      <CartBtn @open-cart="openCartModal" :cart-amount="1"/>
+    </div>
     <div class="flex items-center justify-between">
       <SearchBar v-model="search" class="w-1/3"/>
       <div class="flex space-x-2">
