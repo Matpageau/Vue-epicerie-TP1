@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Pomme",
     "price": 2,
-    "stock": 50,
+    "stock": 20,
     "category": "fruits"
   },
   {
@@ -24,7 +24,7 @@
     "id": 1,
     "name": "Bifteck",
     "price": 2,
-    "stock": 50,
+    "stock": 1,
     "category": "meat"
   },
   {
@@ -38,7 +38,7 @@
     "id": 1,
     "name": "Pomme",
     "price": 2,
-    "stock": 50,
+    "stock": 4,
     "category": "fruits"
   },
   {

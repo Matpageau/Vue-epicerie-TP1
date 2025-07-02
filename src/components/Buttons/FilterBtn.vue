@@ -1,15 +1,28 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
-const isSelected = ref(false);
+const isSelectedLocal = ref(false);
+
 const props = defineProps<{
     category: string;
+    forceSelected?: boolean;
 }>();
+
 const emit = defineEmits<{
     (e: 'click', category: string): void;
 }>()
+
+const isSelected = computed(() => {
+    if (props.forceSelected !== undefined) {
+        return props.forceSelected;
+    }
+    return isSelectedLocal.value;
+});
+
 const handleClick = () => {
-    isSelected.value = !isSelected.value
+    if (!props.forceSelected) {
+        isSelectedLocal.value = !isSelectedLocal.value;
+    }
     emit('click', props.category);
 }
 </script>
