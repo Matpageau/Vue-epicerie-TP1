@@ -45,6 +45,7 @@ const closeEditModal = () => {
 }
 
 const openDeleteModal = (item: ItemType) => {
+  console.log("Opening delete modal for item:", item.id)
   selectedItem.value = item
   isDeleteModalOpen.value = true
 }
@@ -55,7 +56,6 @@ const closeDeleteModal = () => {
 
 const confirmDelete = () => {
   if (selectedItem.value) {
-    console.log(selectedItem.value)
     deleteItem(selectedItem.value)
     selectedItem.value = null
   }
