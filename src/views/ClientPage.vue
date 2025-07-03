@@ -35,7 +35,7 @@ const openCartModal = () => {
   isCartModalOpen.value = true
 }
 
-const closeEditModal = () => {
+const closeCartModal = () => {
   isCartModalOpen.value = false
 }
 
@@ -47,14 +47,14 @@ function showPaymentBanner() {
 }
 
 function handlePaymentSuccess() {
-  closeEditModal();
+  closeCartModal();
   showPaymentBanner();
 }
 </script>
 
 <template>
   <BaseModal v-if="isCartModalOpen">
-    <ShoppingCartModal @payment-success="handlePaymentSuccess"/>
+    <ShoppingCartModal @payment-success="handlePaymentSuccess" @cancel="closeCartModal"/>
   </BaseModal>
   <div class="max-w-[1400px] mx-auto px-6 space-y-6">
     <div class="absolute top-0 right-0">

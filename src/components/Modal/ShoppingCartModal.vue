@@ -20,7 +20,7 @@ const cartStore = useCartStore()
     <h1 class="text-white font-bold text-xl mb-7">Panier</h1>
     <div class="flex flex-col">
       <div class="flex">
-        <div class="flex flex-col gap-3 w-3/5">
+        <div class="flex flex-col min-w-[400px] gap-3 w-3/5">
           <CartCard
             v-for="(cartItem, index) in cartStore.items"
             :key="index"
@@ -89,11 +89,8 @@ const cartStore = useCartStore()
             </div>
           </div>
           <div class="flex justify-center mt-5">
-            <button class="bg-[var(--green)] py-3 px-7 rounded-2xl cursor-pointer font-bold">Payer</button>
+            <button class="bg-[var(--green)] py-3 px-7 rounded-2xl cursor-pointer font-bold" @click="handlePayment">Payer</button>
           </div>
-        </div>
-        <div class="flex justify-center mt-5">
-          <button class="bg-[var(--green)] py-3 px-7 rounded-2xl cursor-pointer font-bold" @click="handlePayment">Payer</button>
         </div>
       </div>
       <div class="flex justify-end mt-3">
