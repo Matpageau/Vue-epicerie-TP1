@@ -1,1 +1,51 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "Pomme",
+    "price": 2,
+    "stock": 20,
+    "category": "fruit"
+  },
+  {
+    "id": 1,
+    "name": "Pomme",
+    "price": 2,
+    "stock": 50,
+    "category": "fruit"
+  },
+  {
+    "id": 1,
+    "name": "Pomme",
+    "price": 2,
+    "stock": 50,
+    "category": "fruit"
+  },
+  {
+    "id": 1,
+    "name": "Bifteck",
+    "price": 2,
+    "stock": 1,
+    "category": "meat"
+  },
+  {
+    "id": 1,
+    "name": "Brocolie",
+    "price": 2,
+    "stock": 50,
+    "category": "vegetable"
+  },
+  {
+    "id": 1,
+    "name": "Pomme",
+    "price": 2,
+    "stock": 4,
+    "category": "fruit"
+  },
+  {
+    "id": 5,
+    "name": "Steak",
+    "price": 2,
+    "stock": 50,
+    "category": "meat"
+  }
+]

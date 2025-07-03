@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import CartCard from '../Card/CartCard.vue';
 
+const emit = defineEmits<{
+  (e: 'payment-success'): void;
+}>();
 
+const handlePayment = () => {
+  emit('payment-success');
+};
 </script>
 
 <template>
@@ -74,7 +80,7 @@ import CartCard from '../Card/CartCard.vue';
           </div>
         </div>
         <div class="flex justify-center mt-5">
-          <button class="bg-[var(--green)] py-3 px-7 rounded-2xl cursor-pointer font-bold">Payer</button>
+          <button class="bg-[var(--green)] py-3 px-7 rounded-2xl cursor-pointer font-bold" @click="handlePayment">Payer</button>
         </div>
       </div>
     </div>

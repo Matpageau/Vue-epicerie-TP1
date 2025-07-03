@@ -11,6 +11,7 @@ import CreateItemBtn from "@/components/Buttons/CreateItemBtn.vue"
 import { ref } from 'vue';
 import FilterButton from '@/components/Buttons/FilterBtn.vue';
 import DeleteModal from '@/components/Modal/DeleteModal.vue';
+import ConfirmationBanner from '@/components/Banner/ConfirmationBanner.vue';
 
 const selectedCategories = ref<string[]>([]);
 function toggleCategory(category: string) {
@@ -31,6 +32,7 @@ const { search, filteredItems, selectedStockFilters, toggleStockFilter } = useFi
 const isProductModalOpen = ref(false)
 const isDeleteModalOpen = ref(false)
 const selectedItem = ref<ItemType | null>(null)
+const isDeleteBannerVisible = ref(false)
 
 const openEditModal = (item?: ItemType) => {
   if(item) {
@@ -45,7 +47,6 @@ const closeEditModal = () => {
 }
 
 const openDeleteModal = (item: ItemType) => {
-  console.log("Opening delete modal for item:", item.id)
   selectedItem.value = item
   isDeleteModalOpen.value = true
 }
@@ -58,6 +59,7 @@ const confirmDelete = () => {
   if (selectedItem.value) {
     deleteItem(selectedItem.value)
     selectedItem.value = null
+    showDeleteBanner() 
   }
   closeDeleteModal()
 }
@@ -66,6 +68,15 @@ const saveItem = (item: ItemType) => {
   addOrUpdateItem(item)
   closeEditModal()
 }
+
+function showDeleteBanner() {
+  isDeleteBannerVisible.value = true;
+  setTimeout(() => {
+    isDeleteBannerVisible.value = false;
+  }, 5000);
+}
+
+
 
 </script>
 
@@ -95,6 +106,7 @@ const saveItem = (item: ItemType) => {
       </div>
     </div>
     <CreateItemBtn @create="openEditModal"/>
+    <ConfirmationBanner v-if="isDeleteBannerVisible" message="Élément supprimé avec succès !"/>
     <CardBoard :page="page" :items="filteredItems" @edit="openEditModal" @delete="openDeleteModal" />
   </div>
 </template>
