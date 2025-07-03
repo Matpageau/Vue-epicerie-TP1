@@ -94,6 +94,7 @@ const cartStore = useCartStore()
         </div>
       </div>
       <div class="flex justify-end mt-3">
+        <p class="text-xl mr-10 text-white">Total: {{ cartStore.totalPrice }}$</p>
         <CancellBtn class="w-[100px]" @cancel="emit('cancel')"/>
       </div>
     </div>
