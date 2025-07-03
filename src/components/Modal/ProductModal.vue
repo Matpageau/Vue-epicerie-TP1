@@ -66,8 +66,8 @@ const saveProduct = () => {
     <select v-model="category" id="category" class="bg-neutral-300 rounded p-1 focus:outline-none focus:ring-2 focus:ring-white">
       <option hidden value=""></option>
       <option value="fruit">Fruit</option>
-      <option value="legume">Légume</option>
-      <option value="viande">Viande</option>
+      <option value="vegetable">Légume</option>
+      <option value="meat">Viande</option>
     </select>
     <label for="stock" class="block text-white mt-2">Stock</label>
     <input 

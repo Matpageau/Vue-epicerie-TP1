@@ -12,15 +12,7 @@ import { ref } from 'vue';
 import FilterButton from '@/components/Buttons/FilterBtn.vue';
 import DeleteModal from '@/components/Modal/DeleteModal.vue';
 
-const page = "admin";
-const itemStore = useItemStore()
-const { items } = storeToRefs(itemStore)
-const { addOrUpdateItem, deleteItem } = itemStore
 const selectedCategories = ref<string[]>([]);
-const { search, filteredItems } = useFilter(items.value, selectedCategories);
-const isModalOpen = ref(false)
-const selectedItem = ref<ItemType | null>(null)
-
 function toggleCategory(category: string) {
   const index = selectedCategories.value.indexOf(category);
   if (index > -1) {
@@ -29,6 +21,16 @@ function toggleCategory(category: string) {
     selectedCategories.value.push(category);
   }
 }
+
+const page = "admin";
+const itemStore = useItemStore()
+const { items } = storeToRefs(itemStore)
+const { addOrUpdateItem, deleteItem } = itemStore
+const { search, filteredItems, selectedStockFilters, toggleStockFilter } = useFilter(items.value, selectedCategories);
+
+const isProductModalOpen = ref(false)
+const isDeleteModalOpen = ref(false)
+const selectedItem = ref<ItemType | null>(null)
 
 const openEditModal = (item?: ItemType) => {
   if(item) {
@@ -85,8 +87,8 @@ const saveItem = (item: ItemType) => {
     <div class="flex items-center justify-between">
       <SearchBar v-model="search" class="w-1/3" />
         <div class="flex space-x-2">
-          <FilterButton category="fruits" :force-selected="selectedCategories.includes('fruits')" @click="toggleCategory">Fruits</FilterButton>
-          <FilterButton category="vegetables" :force-selected="selectedCategories.includes('vegetables')" @click="toggleCategory">Légumes</FilterButton>
+          <FilterButton category="fruit" :force-selected="selectedCategories.includes('fruit')" @click="toggleCategory">Fruits</FilterButton>
+          <FilterButton category="vegetable" :force-selected="selectedCategories.includes('vegetable')" @click="toggleCategory">Légumes</FilterButton>
           <FilterButton category="meat" :force-selected="selectedCategories.includes('meat')" @click="toggleCategory">Viande</FilterButton>
           <FilterButton category="asc" :force-selected="selectedStockFilters === 'asc'" @click="toggleStockFilter">Stock: ASC</FilterButton>
           <FilterButton category="desc" :force-selected="selectedStockFilters === 'desc'" @click="toggleStockFilter">Stock: DESC</FilterButton>
