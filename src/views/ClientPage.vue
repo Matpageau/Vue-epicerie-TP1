@@ -3,6 +3,7 @@ import SearchBar from '@/components/SearchBar.vue';
 import CardBoard from '../components/Card/CardBoard/CardBoard.vue';
 import { useFilter } from '@/composable/SearchFilter';
 import { useItemStore } from '@/stores/itemStore';
+import { useCartStore } from '@/stores/cartStore';
 import { storeToRefs } from 'pinia';
 import FilterButton from '@/components/Buttons/FilterBtn.vue';
 import { ref } from 'vue';
@@ -14,7 +15,9 @@ import ConfirmationBanner from '@/components/Banner/ConfirmationBanner.vue';
 const selectedCategories = ref<string[]>([]);
 const page = "client"
 const itemStore = useItemStore()
+const cartStore = useCartStore()
 const { items } = storeToRefs(itemStore)
+const { totalAmount } = storeToRefs(cartStore)
 const { search, filteredItems } = useFilter(items.value, selectedCategories);
 const isCartModalOpen = ref(false)
 const isPaymentBannerVisible = ref(false)
@@ -55,7 +58,7 @@ function handlePaymentSuccess() {
   </BaseModal>
   <div class="max-w-[1400px] mx-auto px-6 space-y-6">
     <div class="absolute top-0 right-0">
-      <CartBtn @open-cart="openCartModal" :cart-amount="1"/>
+      <CartBtn @open-cart="openCartModal" :cart-amount="totalAmount"/>
     </div>
     <div class="flex items-center justify-between">
       <SearchBar v-model="search" class="w-1/3"/>

@@ -1,17 +1,22 @@
 <script setup lang="ts">
 import type { ItemType } from "@/types/Item";
 import AmountSelector from "@/components/Card/AmountSelector/AmountSelector.vue"
+import { useCartStore } from '@/stores/cartStore';
+import { ref } from "vue";
 
+const amount = ref(1)
 
 const { card } = defineProps<{
   card: ItemType;
   page: "client" | "admin"
-}>();
+}>()
 
 const emit = defineEmits<{
   (e: "edit"): void
   (e: "delete"): void
 }>()
+
+const cartStore = useCartStore()
 
 </script>
 
@@ -43,9 +48,10 @@ const emit = defineEmits<{
     </div>
 
     <div class="self-end" v-else>
-      <AmountSelector />
+      <AmountSelector v-model="amount"/>
       <button
         class="bg-[var(--green)] p-1 rounded-md cursor-pointer"
+        @click="cartStore.addItemToCart(card, amount)"
       >
         Ajouter au panier
       </button>

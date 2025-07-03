@@ -35,10 +35,19 @@ export const useItemStore = defineStore('itemStore', () => {
     items.value.splice(index, 1)
   }
 
+  function validateStock(itemId: string, amount: number): boolean {
+    const item = items.value.find(itm => itm.id == itemId)
+    if(item) {
+      return item.stock >= amount ? true : false
+    }
+    return false
+  }
+
   return {
     items,
     getById,
     addOrUpdateItem,
-    deleteItem
+    deleteItem,
+    validateStock
   }
 })

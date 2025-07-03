@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 const { cartAmount } = defineProps<{
   cartAmount: number
 }>()
@@ -7,7 +9,7 @@ const emit = defineEmits<{
   (e: 'openCart'): void
 }>()
 
-const displayAmount = cartAmount ?? 0
+const displayAmount = computed(() => cartAmount ?? 0)
 </script>
 
 <template>
