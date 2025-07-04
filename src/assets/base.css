@@ -26,6 +26,7 @@
 /* semantic color variables for this project */
 :root {
   --green: #62FEB0;
+  --green-hover: #52cc99;
   --buff: #EDBF85;
   --blue: #6883ba;
   --blue-hover: #5672a8;

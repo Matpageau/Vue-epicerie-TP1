@@ -3,16 +3,23 @@ import CancellBtn from '../Buttons/CancellBtn.vue';
 import CartCard from '../Card/CartCard.vue';
 import { useCartStore } from '@/stores/cartStore';
 
+const cartStore = useCartStore()
 const emit = defineEmits<{
   (e: 'payment-success'): void;
   (e: 'cancel'): void
 }>();
 
 const handlePayment = () => {
+  console.log('Facture')
+  console.log('-------------------')
+  for (let i = 0; i < cartStore.items.length; i++) {
+    console.log(`Produit: ${cartStore.items[i].item.name} Prix: ${cartStore.items[i].item.price}$ Quantité: ${cartStore.items[i].amount}`);
+  }
+  console.log(`Total: ${cartStore.totalPrice}`);
+  cartStore.items = [];
   emit('payment-success');
 };
 
-const cartStore = useCartStore()
 </script>
 
 <template>
@@ -28,7 +35,7 @@ const cartStore = useCartStore()
             :quantity="cartItem.amount"
           />
         </div>
-        <div class="bg-[var(--seaBlue)] ml-5 p-5 rounded-md w-2/5">
+        <form class="bg-[var(--seaBlue)] ml-5 p-5 rounded-md w-2/5" @submit.prevent="handlePayment">
           <div class="border-b-1 border-neutral-400 pb-5">
             <label for="stock" class="block text-white mt-2">Nom</label>
             <input 
@@ -36,6 +43,7 @@ const cartStore = useCartStore()
               name="nom"
               type="text"
               class="bg-neutral-300 rounded w-full p-1 focus:outline-none focus:ring-2 focus:ring-white"
+              required
             />
             <label for="stock" class="block text-white mt-2">E-mail</label>
             <input 
@@ -43,6 +51,7 @@ const cartStore = useCartStore()
               name="email"
               type="email"
               class="bg-neutral-300 rounded w-full p-1 focus:outline-none focus:ring-2 focus:ring-white"
+              required
             />
             <label for="stock" class="block text-white mt-2">Numéro de téléphone</label>
             <input 
@@ -50,6 +59,7 @@ const cartStore = useCartStore()
               name="tel"
               type="tel"
               class="bg-neutral-300 rounded w-full p-1 focus:outline-none focus:ring-2 focus:ring-white"
+              required
             />
             <label for="stock" class="block text-white mt-2">Adresse</label>
             <input 
@@ -57,6 +67,7 @@ const cartStore = useCartStore()
               name="adrs"
               type="text"
               class="bg-neutral-300 rounded w-full p-1 focus:outline-none focus:ring-2 focus:ring-white"
+              required
             />
           </div>
           <div>
@@ -66,6 +77,7 @@ const cartStore = useCartStore()
               name="card"
               type="text"
               class="bg-neutral-300 rounded w-full p-1 focus:outline-none focus:ring-2 focus:ring-white"
+              required
             />
             <div class="flex w-full gap-x-2">
               <div class="w-1/2">
@@ -75,6 +87,7 @@ const cartStore = useCartStore()
                   name="exp"
                   type="text"
                   class="bg-neutral-300 rounded w-full p-1 focus:outline-none focus:ring-2 focus:ring-white"
+                  required
                 />
               </div>
               <div class="w-1/2">
@@ -84,14 +97,15 @@ const cartStore = useCartStore()
                   name="cvc"
                   type="text"
                   class="bg-neutral-300 rounded w-full p-1 focus:outline-none focus:ring-2 focus:ring-white"
+                  required
                 />
               </div>
             </div>
           </div>
           <div class="flex justify-center mt-5">
-            <button class="bg-[var(--green)] py-3 px-7 rounded-2xl cursor-pointer font-bold" @click="handlePayment">Payer</button>
+            <button type="submit" class="bg-[var(--green)] py-3 px-7 rounded-2xl cursor-pointer font-bold">Payer</button>
           </div>
-        </div>
+        </form>
       </div>
       <div class="flex justify-end mt-3">
         <p class="text-xl mr-10 text-white">Total: {{ cartStore.totalPrice }}$</p>

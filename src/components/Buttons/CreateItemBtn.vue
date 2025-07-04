@@ -6,7 +6,7 @@ const emit = defineEmits<{
 
 <template>
   <button
-    class="bg-[var(--green)] rounded font-bold px-2 cursor-pointer"
+    class="bg-[var(--green)] rounded font-bold px-2 cursor-pointer hover:bg-[var(--green-hover)] transition-colors"
     @click="emit('create')"
   >
     Ajouter un produit

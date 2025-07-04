@@ -50,7 +50,7 @@ const cartStore = useCartStore()
     <div class="self-end" v-else>
       <AmountSelector v-model="amount"/>
       <button
-        class="bg-[var(--green)] p-1 rounded-md cursor-pointer"
+        class="bg-[var(--green)] p-1 rounded-md cursor-pointer hover:bg-[var(--green-hover)] transition-colors"
         @click="cartStore.addItemToCart(card, amount)"
       >
         Ajouter au panier
